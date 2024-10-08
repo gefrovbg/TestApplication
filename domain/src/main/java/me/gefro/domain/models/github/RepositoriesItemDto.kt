@@ -1,0 +1,26 @@
+package me.gefro.domain.models.github
+
+data class RepositoriesItemDto(
+    val archive_url: String? = null,
+    val archived: Boolean? = null,
+    val created_at: String? = null,
+    val description: String? = null,
+    val disabled: Boolean? = null,
+    val downloads_url: String? = null,
+    val full_name: String? = null,
+    val id: Int? = null,
+    val language: String? = null,
+    val languages_url: String? = null,
+    val name: String? = null,
+    val node_id: String? = null,
+    val owner: RepositoryOwnerItemDto? = null,
+    val `private`: Boolean? = null,
+    val size: Int? = null,
+    val tags_url: String? = null,
+    val updated_at: String? = null,
+    val url: String? = null,
+    val visibility: String? = null,
+    val watchers: Int? = null,
+    val watchers_count: Int? = null,
+    val html_url: String? = null,
+)
