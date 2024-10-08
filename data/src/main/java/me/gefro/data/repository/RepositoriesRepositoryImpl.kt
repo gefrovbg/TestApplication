@@ -3,6 +3,7 @@ package me.gefro.data.repository
 import me.gefro.data.ktor.RepositoriesApiService
 import me.gefro.domain.bl.repository.RepositoriesRepository
 import me.gefro.domain.models.github.RepositoriesItemDto
+import me.gefro.domain.models.github.search.SearchRepositoriesItemDto
 import me.gefro.domain.models.github.search.SearchRepositoriesListDto
 
 class RepositoriesRepositoryImpl(
@@ -13,7 +14,7 @@ class RepositoriesRepositoryImpl(
         search: String,
         perPage: Int,
         page: Int
-    ): SearchRepositoriesListDto? {
+    ): List<SearchRepositoriesItemDto>? {
 
         return apiService.getListRepositoriesBySearch(
             search = search,

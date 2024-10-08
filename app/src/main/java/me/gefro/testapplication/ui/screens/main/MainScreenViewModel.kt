@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import me.gefro.domain.bl.usecases.DownloadRepositoryArchiveUseCase
 import me.gefro.domain.bl.usecases.GetListRepositoriesBySearchUseCase
 import me.gefro.domain.models.github.RepositoriesItemDto
+import me.gefro.domain.models.github.search.SearchRepositoriesItemDto
 import me.gefro.testapplication.paging.SearchRepositoriesPagingData
 import me.gefro.testapplication.paging.SearchRepositoriesPagingSource
 import me.gefro.testapplication.services.DownloadService
@@ -47,7 +48,7 @@ class MainScreenViewModel(
     }
 
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
-    val searchedListRepositories: Flow<PagingData<RepositoriesItemDto>> = search.debounce(1000).flatMapLatest{ lastSearch ->
+    val searchedListRepositories: Flow<PagingData<SearchRepositoriesItemDto>> = search.debounce(1000).flatMapLatest{ lastSearch ->
         if (lastSearch.isNotBlank()) {
             searchRepositoriesPagingData.getFlowData(lastSearch)
         }else{

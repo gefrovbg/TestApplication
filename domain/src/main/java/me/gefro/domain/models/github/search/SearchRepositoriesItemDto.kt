@@ -1,6 +1,8 @@
 package me.gefro.domain.models.github.search
 
 import kotlinx.serialization.Serializable
+import me.gefro.domain.models.github.RepositoriesItemDto
+import me.gefro.domain.models.github.RepositoryOwnerItemDto
 
 @Serializable
 data class SearchRepositoriesItemDto(
@@ -80,4 +82,39 @@ data class SearchRepositoriesItemDto(
     val visibility: String? = null,
     val watchers: Int? = null,
     val watchers_count: Int? = null,
-)
+){
+    fun convertToRepo(): RepositoriesItemDto{
+        return RepositoriesItemDto(
+            archive_url = this.archive_url,
+            archived = this.archived,
+            created_at = this.created_at,
+            description = this.description,
+            disabled = this.disabled,
+            downloads_url = this.downloads_url,
+            full_name = this.full_name,
+            id = this.id,
+            language = this.language,
+            languages_url = this.languages_url,
+            name = this.name,
+            node_id = this.node_id,
+            owner = this.owner?.let { ownerItem ->
+                RepositoryOwnerItemDto(
+                    avatar_url = ownerItem.avatar_url,
+                    id = ownerItem.id,
+                    login = ownerItem.login,
+                    repos_url = ownerItem.repos_url,
+                    url = ownerItem.url
+                )
+            },
+            `private` = this.`private`,
+            size = this.size,
+            tags_url = this.tags_url,
+            updated_at = this.updated_at,
+            url = this.url,
+            visibility = this.visibility,
+            watchers = this.watchers,
+            watchers_count = this.watchers_count,
+            html_url = this.html_url
+        )
+    }
+}

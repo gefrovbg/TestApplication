@@ -21,6 +21,7 @@ import me.gefro.domain.bl.repository.DownloadedFilesRepository
 import me.gefro.domain.models.Resource
 import me.gefro.domain.models.github.RepositoriesItemDto
 import me.gefro.domain.models.github.downloaded.DownloadedFile
+import me.gefro.domain.models.github.search.SearchRepositoriesItemDto
 import me.gefro.domain.models.github.search.SearchRepositoriesListDto
 import java.io.File
 import java.io.FileOutputStream
@@ -34,24 +35,19 @@ class RepositoriesApiService(
         search: String,
         perPage: Int,
         page: Int
-    ): SearchRepositoriesListDto? {
+    ): List<SearchRepositoriesItemDto>? {
         return try {
             val param = mutableListOf(
                 Pair("per_page","$perPage"),
                 Pair("page","$page")
             )
-            if (search.isNotBlank()){
-                param.add(
-                    Pair("q", search)
-                )
-            }
             ktorApi.client.get {
                 pathUrl(
-                    path = "/search/repositories",
+                    path = "/users/$search/repos",
                     param = param
                 )
                 contentType(ContentType.Application.Json)
-            }.body<SearchRepositoriesListDto>()
+            }.body<List<SearchRepositoriesItemDto>>()
         } catch (e: Exception){
             null
         } catch (e: Throwable){

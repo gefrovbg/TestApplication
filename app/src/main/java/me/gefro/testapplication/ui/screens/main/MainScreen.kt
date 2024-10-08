@@ -194,7 +194,7 @@ internal fun MainScreen(
                         items(searchedListRepositories.itemCount) { index ->
                             searchedListRepositories[index]?.let { item ->
                                 RepositoryItemView(
-                                    item = item,
+                                    item = item.convertToRepo(),
                                     onClickItem = {
                                         val url = item.html_url
                                         url?.let {
