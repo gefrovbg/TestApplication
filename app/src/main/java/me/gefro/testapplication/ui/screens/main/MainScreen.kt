@@ -201,7 +201,8 @@ internal fun MainScreen(
                                             uriHandler.openUri(uri = url)
                                         }
                                     },
-                                    onClickDownload = viewModel::download
+                                    onClickDownload = viewModel::download,
+                                    showOwner = false
                                 )
                             }
                         }

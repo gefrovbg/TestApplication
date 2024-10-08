@@ -27,9 +27,9 @@ class SearchRepositoriesPagingSource(
                     search = search
                 )
 
-                val response = request
+                val response = request?.filter { it.private != true && it.private != null }
 
-            if (response != null){
+                if (response != null){
                     LoadResult.Page(
                         data = response,
                         prevKey = if (nextPage == 1) null else nextPage - 1,

@@ -31,7 +31,8 @@ internal fun RepositoryItemView(
     item: RepositoriesItemDto,
     onClickItem:() -> Unit,
     onClickDownload:(item: RepositoriesItemDto) -> Unit,
-    showDownload: Boolean = true
+    showDownload: Boolean = true,
+    showOwner: Boolean = true,
 ){
     Card(
         modifier = Modifier
@@ -67,14 +68,16 @@ internal fun RepositoryItemView(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = item.owner?.login ?: "",
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    fontSize = 12.sp,
-                    lineHeight = 14.sp,
-                    fontWeight = FontWeight.W500
-                )
+                if (showOwner)
+                    Text(
+                        text = item.owner?.login ?: "",
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        fontSize = 12.sp,
+                        lineHeight = 14.sp,
+                        fontWeight = FontWeight.W500
+                    )
+                Spacer(modifier = Modifier.width(8.dp))
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
